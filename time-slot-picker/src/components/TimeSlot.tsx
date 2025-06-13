@@ -3,6 +3,7 @@ import { TimeSlot as TimeSlotType } from "../Types";
 import { RootState } from "../store";
 import dayjs from "dayjs"
 import { setReservation } from "../store/reservationSlice";
+import { getFormattedDate } from "../util/date";
 
 type TimeSlotProps = {
     slot: TimeSlotType
@@ -52,7 +53,7 @@ const TimeSlot = ({ slot, companyId }: TimeSlotProps) => {
                 opacity: isOverlapping ? 0.5 : 1
             }}
         >
-            {slot.start_time} - {slot.end_time}
+            {getFormattedDate(slot.start_time)} - {getFormattedDate(slot.end_time)}
         </div>
     )
 }
