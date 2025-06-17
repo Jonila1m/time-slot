@@ -26,6 +26,7 @@ const App = () => {
               display: 'flex',
               flexDirection: 'column',
               gap: '1rem'
+
             }}>
             <Company company={company} />
           </div>
