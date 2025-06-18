@@ -1,16 +1,12 @@
-import { useSelector } from "react-redux"
 import { Company as CompanyType } from "../Types"
 import TimeSlot from "./TimeSlot"
-import { RootState } from "../store"
-import { getFormattedDate } from "../util/date"
+import SelectedSlot from "./SelectedSlot";
 
 type CompanyProps = {
     company: CompanyType
 }
 
 const Company = ({ company }: CompanyProps) => {
-    const selectedSlot = useSelector((state: RootState) =>
-        state.reservation.selectedSlots.find(slot => slot.companyId === company.id))
 
     return (
         <div key={company.id}
@@ -30,16 +26,12 @@ const Company = ({ company }: CompanyProps) => {
 
                 <div
                     style={{
-                        minHeight: '1.5rem',
+                        minHeight: '2.5rem',
                         marginBottom: '1rem',
                         padding: '0.5rem'
                     }}>
-                    {selectedSlot && (
-                        <h5 style={{ margin: 0, fontWeight: 'normal' }}>
-                            Selected Slot:{" "}
-                            {getFormattedDate(selectedSlot.slot.start_time)} - {getFormattedDate(selectedSlot.slot.end_time)}
-                        </h5>
-                    )}
+
+                    <SelectedSlot companyId={company.id} />
                 </div>
 
                 <div>
@@ -48,8 +40,6 @@ const Company = ({ company }: CompanyProps) => {
                             key={`${slot.start_time}-${slot.end_time}-${company.id}`}
                             slot={slot}
                             companyId={company.id}
-                            selectedSlot={selectedSlot?.slot}
-
                         />
                     ))}
                 </div>
