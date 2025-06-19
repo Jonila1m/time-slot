@@ -19,7 +19,6 @@ const Company = ({ company }: CompanyProps) => {
                 flexDirection: 'column',
                 justifyContent: 'space-between',
                 textAlign: 'center',
-
             }}>
             <div>
                 <h2>{company.name}</h2>
@@ -47,5 +46,7 @@ const Company = ({ company }: CompanyProps) => {
         </div>
     )
 }
-
 export default Company
+
+
+

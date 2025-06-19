@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { TimeSlot as TimeSlotType } from "../Types"
 import { RootState } from "../store"
 import { setReservation, removeReservation } from "../store/reservationSlice"
-import { doTimeSlotsOverlap } from "../util/overlap"
+import { checkIfTimeSlotsOverlap } from "../util/dateService"
 import { useDateFormatting } from "../hooks/useDateFormatting"
 
 type TimeSlotProps = {
@@ -25,7 +25,7 @@ const TimeSlot = ({ slot, companyId }: TimeSlotProps) => {
     const isOverlapping = selectedSlots.some((selectedSlot) => {
         return (
             selectedSlot.companyId !== companyId &&
-            doTimeSlotsOverlap(selectedSlot.slot, slot)
+            checkIfTimeSlotsOverlap(selectedSlot.slot, slot)
         );
     });
 
@@ -66,7 +66,7 @@ const TimeSlot = ({ slot, companyId }: TimeSlotProps) => {
                 borderRadius: '4px'
             }}
         >
-            {formatTime(slot.start_time)} - {formatTime(slot.end_time)}
+            {`${formatTime(slot.start_time)} - ${formatTime(slot.end_time)}`}
         </div>
     );
 
